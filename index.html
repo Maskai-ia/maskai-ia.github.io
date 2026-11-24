@@ -35,6 +35,12 @@ a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);transit
 a:hover{color:var(--accent);border-color:var(--accent)}
 body [lang="en"]{display:none} html[data-lang="en"] body [lang="es"]{display:none} html[data-lang="en"] body [lang="en"]{display:revert}
 
+.hero{display:flex;align-items:center;gap:20px}
+.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;background:var(--accent-soft);box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--line);flex:none;transition:transform .35s cubic-bezier(.3,1.6,.5,1);animation:bob 5s ease-in-out infinite}
+.avatar:hover{transform:rotate(-6deg) scale(1.06)}
+@keyframes bob{50%{translate:0 -4px}}
+@media (max-width:520px){.avatar{width:72px;height:72px}.hero{gap:14px}}
+@media (prefers-reduced-motion:reduce){.avatar{animation:none}}
 header h1{font:500 clamp(40px,7vw,54px)/1.05 "Playfair Display",Georgia,serif;margin:0;letter-spacing:-.01em}
 header h1 .oll{color:var(--accent)}
 .aka{display:flex;align-items:center;gap:14px;margin:10px 0 0;color:var(--taupe);font:500 12px/1 "Geist Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:lowercase}
@@ -96,7 +102,9 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
 <canvas class="pond" aria-hidden="true"></canvas>
 
 <main class="wrap">
-  <header>
+  <header class="hero">
+    <img class="avatar" src="avatar.png" alt="Avatar de Nykoll estilo anime" width="96" height="96">
+    <div>
     <h1>Nyk<span class="oll">oll</span> Ortiz</h1>
     <p class="aka">
       <span class="kanji">
@@ -108,6 +116,7 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
       </span>
       <span><span lang="es">crm · automatización · datos</span><span lang="en">crm · automation · data</span></span>
     </p>
+    </div>
   </header>
 
   <nav>
