@@ -1,6 +1,6 @@
 # Nykoll Ortiz · Carta de presentación
 
-Sitio personal de **Nykoll Ortiz** — CRM Analyst en Cabify Perú · Automation · Data Operations.
+Sitio personal de **Nykoll Ortiz** — CRM Specialist · Automation · Data Operations.
 Publicado con **GitHub Pages** en **https://maskai-ia.github.io**
 
 > Esta es mi página web. El código vive en este mismo repositorio (`index.html`).
