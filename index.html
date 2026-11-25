@@ -8,88 +8,98 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23B81C2A'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3ENK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Geist+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600&text=%E9%AF%89&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <style>
 :root{
-  --bg:#FFFFFF; --ink:#0A0A0A; --soft:#6B5E57; --taupe:#A89080; --line:#ECE6E1;
-  --accent:#B81C2A; --accent-soft:#F7E8E9; --veil:rgba(255,255,255,.72);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0C0A0A; --ink:#F4EFEC; --soft:#B5A79F; --taupe:#8C7A6E; --line:#2A2321;
-    --accent:#E0404F; --accent-soft:#2A1214; --veil:rgba(12,10,10,.66);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0C0A0A; --ink:#F4EFEC; --soft:#B5A79F; --taupe:#8C7A6E; --line:#2A2321;
-  --accent:#E0404F; --accent-soft:#2A1214; --veil:rgba(12,10,10,.66);
+  --bg:#FFFFFF; --ink:#0B0B0B; --soft:#5E5E62; --mute:#8A8A8E; --line:#ECE8E8;
+  --accent:#B81C2A; --rose:#E8606B; --tint:#F8E6E8; --veil:rgba(255,255,255,.78);
+  --serif:"Playfair Display",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:300 16px/1.65 "DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+html,body{margin:0;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
 canvas.pond{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
-.wrap{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:13vh 16px 120px}
-.wrap::before{content:"";position:absolute;inset:8vh -40px 40px;background:var(--veil);filter:blur(36px);z-index:-1;border-radius:40px}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:11vh 20px 110px}
+.wrap::before{content:"";position:absolute;inset:6vh -48px 40px;background:var(--veil);filter:blur(40px);z-index:-1;border-radius:48px}
 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .2s,color .2s}
 a:hover{color:var(--accent);border-color:var(--accent)}
 body [lang="en"]{display:none} html[data-lang="en"] body [lang="es"]{display:none} html[data-lang="en"] body [lang="en"]{display:revert}
+.caps{font:500 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
 
-header h1{font:500 clamp(40px,7vw,54px)/1.05 "Playfair Display",Georgia,serif;margin:0;letter-spacing:-.01em}
-header h1 .oll{color:var(--accent)}
-.aka{display:flex;align-items:center;gap:14px;margin:10px 0 0;color:var(--taupe);font:500 12px/1 "Geist Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:lowercase}
-.kanji{position:relative;display:inline-block}
-.kanji button{all:unset;cursor:help;font:600 20px/1 "Noto Serif JP",serif;color:var(--accent);padding:2px 0}
-.pop{position:absolute;left:0;top:calc(100% + 10px);width:260px;padding:14px 16px;background:var(--bg);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.08);opacity:0;transform:translateY(-4px);pointer-events:none;transition:.18s;z-index:5;text-transform:none;letter-spacing:0}
+/* ---------- cabecera ---------- */
+.eyebrow{color:var(--soft);margin:0 0 14px}
+.role-line{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+.role-line::before{content:"";flex:none;width:0;height:2px;background:var(--accent);animation:grow 1.1s .2s ease forwards}
+@keyframes grow{to{width:56px}}
+header h1{font:500 clamp(52px,10vw,96px)/.98 var(--serif);margin:0;letter-spacing:-.02em}
+header h1 em{font-weight:400;font-style:italic;background:linear-gradient(100deg,var(--accent) 0 42%,var(--rose) 50%,var(--accent) 58% 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{from{background-position:130% 0}to{background-position:-130% 0}}
+.rotator{position:relative;height:34px;margin:16px 0 24px;font:400 clamp(18px,2.6vw,22px)/34px var(--sans)}
+.rotator span{position:absolute;inset:0;opacity:0;animation:rot 10.8s infinite}
+.rotator span:nth-child(2){animation-delay:3.6s}.rotator span:nth-child(3){animation-delay:7.2s}
+@keyframes rot{0%{opacity:0;transform:translateY(8px)}4%,30%{opacity:1;transform:none}34%,100%{opacity:0;transform:translateY(-8px)}}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.4}}
+.kanji{position:relative;display:inline-block;margin-left:auto}
+.kanji button{all:unset;box-sizing:border-box;cursor:help;font:500 22px/1 serif;color:var(--accent);width:44px;height:44px;display:grid;place-items:center;border:1.5px solid var(--accent);border-radius:50%;transition:.2s}
+.kanji button:hover{background:var(--accent);color:#fff}
+.pop{position:absolute;right:0;top:calc(100% + 10px);width:270px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 34px rgba(0,0,0,.08);opacity:0;transform:translateY(-4px);pointer-events:none;transition:.18s;z-index:5;font:400 13px/1.5 var(--sans);color:var(--soft)}
 .kanji:hover .pop,.kanji:focus-within .pop{opacity:1;transform:none}
-.pop .row{display:flex;gap:12px;align-items:center}
-.pop .tile{display:flex;flex-direction:column;align-items:center;min-width:44px;padding:6px 0;border:1px solid var(--line);border-radius:8px}
-.pop .py{font:500 10px "Geist Mono",monospace;color:var(--taupe)}
-.pop .ch{font:600 24px/1.1 "Noto Serif JP",serif;color:var(--accent)}
-.pop .def{font:400 13px/1.45 "DM Sans",sans-serif;color:var(--soft)}
+.top{display:flex;align-items:flex-start}
 
-nav{display:flex;gap:22px;margin:30px 0 30px;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:15px}
-nav a{border:0;color:var(--taupe)}
-nav a.active{color:var(--ink);font-weight:500}
-nav a.active::after{content:"";display:block;height:2px;background:var(--accent);margin-top:4px;border-radius:2px}
-.tools{margin-left:auto;display:flex;gap:6px}
-.tools button{all:unset;cursor:pointer;font:500 11px "Geist Mono",monospace;color:var(--taupe);padding:3px 7px;border:1px solid var(--line);border-radius:6px}
+/* ---------- botones ---------- */
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 8px}
+.btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border:1.5px solid var(--ink);border-radius:999px;font:500 15px var(--sans);letter-spacing:.01em;background:#fff;transition:.2s}
+.btn b{color:var(--accent);font-weight:500}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary b{color:#fff}
+.btn.primary:hover{background:#9C1723;color:#fff}
+
+/* ---------- navegación ---------- */
+nav{display:flex;gap:26px;align-items:center;margin:48px 0 32px;padding-bottom:14px;border-bottom:1px solid var(--line);font:500 15px var(--sans)}
+nav a{border:0;color:var(--mute);position:relative}
+nav a.active{color:var(--ink)}
+nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-15px;height:2px;background:var(--accent);border-radius:2px}
+.tools{margin-left:auto}
+.tools button{all:unset;box-sizing:border-box;cursor:pointer;font:600 12px var(--sans);letter-spacing:.14em;color:var(--soft);padding:6px 12px;border:1.5px solid var(--line);border-radius:999px}
 .tools button:hover{color:var(--accent);border-color:var(--accent)}
 
 section[hidden]{display:none}
-section{animation:in .35s ease}
-@keyframes in{from{opacity:0;transform:translateY(4px)}}
+section{animation:in .4s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
 p{margin:0 0 18px}
-.label{font:500 12px "Geist Mono",monospace;color:var(--taupe);margin:26px 0 10px;letter-spacing:.04em}
-ul.recent{list-style:none;margin:0 0 22px;padding:0 0 0 14px;border-left:1px solid var(--line)}
-ul.recent li{margin:0 0 10px}
-.sub{display:block;color:var(--soft);font-size:14px}
-.ico{display:inline-block;width:15px;height:15px;vertical-align:-2px;margin-right:5px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lead{font:400 clamp(20px,2.6vw,24px)/1.5 var(--sans);margin-bottom:30px}
 .hl{color:var(--accent);font-weight:500}
-.links{display:flex;flex-wrap:wrap;gap:16px;margin-top:30px;font-size:14px}
-.mail{margin-top:14px;font-size:13px;color:var(--taupe)}
-.mail button{all:unset;cursor:pointer;border-bottom:1px dashed var(--taupe)}
+.label{color:var(--mute);margin:40px 0 16px}
+
+
+ul.recent{list-style:none;margin:0 0 22px;padding:0 0 0 18px;border-left:2px solid var(--tint)}
+ul.recent li{margin:0 0 14px}
+.sub{display:block;color:var(--soft);font-size:14.5px;padding-left:1.25em;text-indent:-1.25em}
+.ico{display:inline-block;width:16px;height:16px;vertical-align:-3px;margin-right:6px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.mail{margin-top:6px;font-size:14px;color:var(--mute)}
+.mail button{all:unset;box-sizing:border-box;cursor:pointer;border-bottom:1px dashed var(--mute)}
 .mail button:hover{color:var(--accent);border-color:var(--accent)}
 
-.case{padding:16px 0;border-bottom:1px solid var(--line)}
+
+/* ---------- casos, trayectoria, proyectos ---------- */
+.case{padding:22px 0;border-bottom:1px solid var(--line)}
 .case:last-child{border:0}
-.case .k{font:500 11px "Geist Mono",monospace;color:var(--taupe);letter-spacing:.05em;text-transform:uppercase}
-.case h3{font:500 20px/1.3 "Playfair Display",serif;margin:4px 0 6px}
-.case p{margin:0;color:var(--soft);font-size:15px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chips span{font:500 11px "Geist Mono",monospace;color:var(--soft);padding:2px 8px;border:1px solid var(--line);border-radius:20px}
+.case .k{color:var(--accent)}
+.case h3{font:500 23px/1.3 var(--serif);margin:10px 0 8px}
+.case p{margin:0;color:var(--soft);font-size:15.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips span{font:500 13px var(--sans);color:var(--ink);padding:4px 12px;border:1.5px solid var(--line);border-radius:999px}
+.tl{display:grid;grid-template-columns:130px 1fr;gap:6px 22px;margin-top:6px}
+.tl dt{font:600 12px/2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.tl dd{margin:0 0 16px;font:500 17px/1.5 var(--serif);font-variant-numeric:lining-nums}
+.tl dd small{display:block;font:400 14.5px/1.5 var(--sans);color:var(--soft)}
 
-.tl{display:grid;grid-template-columns:120px 1fr;gap:4px 18px;margin-top:6px}
-.tl dt{font:500 12px/1.9 "Geist Mono",monospace;color:var(--taupe)}
-.tl dd{margin:0 0 12px}
-.tl dd small{display:block;color:var(--soft);font-size:14px}
-
-footer{margin-top:44px;display:flex;justify-content:space-between;align-items:center;font:500 12px "Geist Mono",monospace;color:var(--taupe)}
-footer .live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:7px;vertical-align:1px;animation:pulse 2s infinite}
-@keyframes pulse{50%{opacity:.25}}
-@media (max-width:600px){canvas.pond{opacity:.5}}
-@media (max-width:520px){.wrap{padding-top:9vh}nav{gap:16px;font-size:14px;flex-wrap:wrap}.tl{grid-template-columns:1fr}.tl dt{line-height:1.2}}
-@media (prefers-reduced-motion:reduce){section,footer .live::before{animation:none}}
+footer{margin-top:56px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center;color:var(--mute)}
+footer>span{white-space:nowrap}
+footer .live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:9px;vertical-align:1px;animation:pulse 2s infinite}
+@media (max-width:700px){canvas.pond{opacity:.35}}
+@media (max-width:520px){.wrap{padding-top:8vh}.wrap::before{inset:6vh 0 40px}nav{gap:14px;font-size:13.5px;flex-wrap:nowrap}.tools button{padding:5px 9px}.tl{grid-template-columns:1fr}.tl dt{line-height:1.2}.btn{height:42px;padding:0 16px;font-size:14px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.rotator span:first-child{opacity:1}.role-line::before{width:56px}}
 </style>
 </head>
 <body>
@@ -97,86 +107,87 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
 
 <main class="wrap">
   <header>
-    <h1>Nyk<span class="oll">oll</span> Ortiz</h1>
-    <p class="aka">
+    <div class="top">
+      <div>
+        <p class="eyebrow caps">N° 01 — Lima 2026</p>
+        <p class="role-line caps"><span lang="es">CRM · automatización · datos</span><span lang="en">CRM · automation · data</span></p>
+      </div>
       <span class="kanji">
         <button type="button" aria-describedby="pop">鯉</button>
-        <span class="pop" id="pop" role="tooltip">
-          <span class="row"><span class="tile"><span class="py">koi</span><span class="ch">鯉</span></span>
-          <span class="def"><span lang="es">carpa. la leyenda dice que la que nada contra la corriente se vuelve dragón. <em>(clic para darles de comer)</em></span><span lang="en">carp. legend says the one that swims upstream becomes a dragon. <em>(click to feed them)</em></span></span></span>
-        </span>
+        <span class="pop" id="pop" role="tooltip"><span lang="es"><b style="color:var(--accent)">koi</b> · carpa. la leyenda dice que la que nada contra la corriente se vuelve dragón. <em>(clic para darles de comer)</em></span><span lang="en"><b style="color:var(--accent)">koi</b> · carp. legend says the one that swims upstream becomes a dragon. <em>(click to feed them)</em></span></span>
       </span>
-      <span><span lang="es">crm · automatización · datos</span><span lang="en">crm · automation · data</span></span>
-    </p>
+    </div>
+    <h1>Nykoll <em>Ortiz</em></h1>
+    <div class="rotator" aria-live="off">
+      <span><span lang="es">Convierto datos en conversaciones</span><span lang="en">I turn data into conversations</span></span>
+      <span><span lang="es">Aprendo en público</span><span lang="en">Learning in public</span></span>
+      <span><span lang="es">Nado contra la corriente</span><span lang="en">Swimming upstream</span></span>
+    </div>
+    <div class="btns">
+      <a class="btn primary" lang="es" href="CV_Nykoll_Ortiz.pdf" download>Descargar CV <b>↓</b></a>
+      <a class="btn primary" lang="en" href="CV_Nykoll_Ortiz_EN.pdf" download>Download CV <b>↓</b></a>
+      <a class="btn" href="https://www.linkedin.com/in/nykoll-ortiz">LinkedIn <b>↗</b></a>
+      <a class="btn" href="https://github.com/Maskai-ia">GitHub <b>↗</b></a>
+    </div>
   </header>
 
   <nav>
-    <a href="#sobre-mi" data-tab="sobre-mi" class="active"><span lang="es">sobre mí</span><span lang="en">about</span></a>
-    <a href="#casos" data-tab="casos"><span lang="es">casos</span><span lang="en">work</span></a>
-    <a href="#trayectoria" data-tab="trayectoria"><span lang="es">trayectoria</span><span lang="en">path</span></a>
-    <a href="#proyectos" data-tab="proyectos"><span lang="es">proyectos</span><span lang="en">projects</span></a>
-    <span class="tools">
-      <button type="button" id="lang" aria-label="Cambiar idioma">EN</button>
-      <button type="button" id="theme" aria-label="Cambiar tema">◐</button>
-    </span>
+    <a href="#sobre-mi" data-tab="sobre-mi" class="active"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
+    <a href="#casos" data-tab="casos"><span lang="es">Casos</span><span lang="en">Work</span></a>
+    <a href="#trayectoria" data-tab="trayectoria"><span lang="es">Trayectoria</span><span lang="en">Path</span></a>
+    <a href="#proyectos" data-tab="proyectos"><span lang="es">Proyectos</span><span lang="en">Projects</span></a>
+    <span class="tools"><button type="button" id="lang" aria-label="Cambiar idioma">EN</button></span>
   </nav>
 
   <!-- sobre mí -->
   <section data-panel="sobre-mi">
-    <p lang="es">soy CRM analyst en Lima. convierto bases de clientes en <span class="hl">flujos que la gente sí abre</span>: el mensaje correcto, a la persona correcta, en el momento correcto.</p>
-    <p lang="en">i'm a CRM analyst in Lima. i turn customer databases into <span class="hl">flows people actually open</span>: the right message, to the right person, at the right time.</p>
+    <p class="lead" lang="es">Soy CRM analyst en Lima. Convierto bases de clientes en <span class="hl">flujos que la gente sí abre</span>: el mensaje correcto, a la persona correcta, en el momento correcto.</p>
+    <p class="lead" lang="en">I'm a CRM analyst in Lima. I turn customer databases into <span class="hl">flows people actually open</span>: the right message, to the right person, at the right time.</p>
 
-    <div class="label"><span lang="es">recientemente</span><span lang="en">recently</span></div>
+
+    <p class="label caps"><span lang="es">Recientemente</span><span lang="en">Recently</span></p>
     <ul class="recent">
       <li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        <span lang="es">CRM analyst en <a href="https://cabify.com" >Cabify</a> Perú</span><span lang="en">CRM analyst at <a href="https://cabify.com">Cabify</a> Peru</span>
-        <span class="sub"><span lang="es">↳ flujos en Braze para pasajeros y conductores: push, in-app, email y WhatsApp</span><span lang="en">↳ Braze flows for riders and drivers: push, in-app, email and WhatsApp</span></span>
-        <span class="sub"><span lang="es">↳ cada campaña con grupo de control, para saber si de verdad movió la aguja</span><span lang="en">↳ every campaign with a control group, to know if it really moved the needle</span></span>
+        <span lang="es">CRM analyst en <a href="https://cabify.com">Cabify</a> Perú</span><span lang="en">CRM analyst at <a href="https://cabify.com">Cabify</a> Peru</span>
       </li>
       <li><svg class="ico" viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15v-3M12 15V9M16 15v-6"/></svg>
-        <span lang="es">antes: CRM y estrategia comercial para agencias multimarca</span><span lang="en">before: CRM and commercial strategy for multi-brand agencies</span>
+        <span lang="es">Antes: CRM y estrategia comercial para agencias multimarca</span><span lang="en">Before: CRM and commercial strategy for multi-brand agencies</span>
         <span class="sub"><span lang="es">↳ HubSpot, dashboards en Power BI y pipelines donde antes no había nada</span><span lang="en">↳ HubSpot, Power BI dashboards and pipelines where there were none</span></span>
       </li>
       <li><svg class="ico" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>
-        <span lang="es">top 5% en Administración y Negocios Internacionales, UPC</span><span lang="en">top 5% in Business Administration &amp; International Business, UPC</span>
+        <span lang="es">Top 5% en Administración y Negocios Internacionales, UPC</span><span lang="en">Top 5% in Business Administration &amp; International Business, UPC</span>
       </li>
     </ul>
 
-    <p lang="es">también escribo sobre IA aplicada en LinkedIn y diseño mi propio sistema de agentes para trabajar mejor.</p>
-    <p lang="en">i also write about applied AI on LinkedIn and build my own agent system to work smarter.</p>
+    <p lang="es">También escribo sobre IA aplicada en LinkedIn y diseño mi propio sistema de agentes para trabajar mejor.</p>
+    <p lang="en">I also write about applied AI on LinkedIn and build my own agent system to work smarter.</p>
+    <div class="mail">Email: <button type="button" id="mail" data-u="ovnykoll001" data-d="gmail.com">ovnykoll001 [at] gmail [dot] com</button></div>
 
-    <div class="links">
-      <a href="https://www.linkedin.com/in/nykoll-ortiz">linkedin</a>
-      <a href="https://github.com/Maskai-ia">github</a>
-      <a lang="es" href="CV_Nykoll_Ortiz.pdf" download>descargar cv</a>
-      <a lang="en" href="CV_Nykoll_Ortiz_EN.pdf" download>download cv</a>
-    </div>
-    <div class="mail">email: <button type="button" id="mail" data-u="ovnykoll001" data-d="gmail.com">ovnykoll001 [at] gmail [dot] com</button></div>
   </section>
 
   <!-- casos -->
   <section data-panel="casos" hidden>
-    <p class="label" style="margin-top:0"><span lang="es">casos anonimizados por rubro</span><span lang="en">cases anonymized by industry</span></p>
+    <p class="label caps" style="margin-top:0"><span lang="es">casos anonimizados por rubro</span><span lang="en">cases anonymized by industry</span></p>
     <div class="case">
-      <div class="k"><span lang="es">movilidad · ciclo de vida</span><span lang="en">mobility · lifecycle</span></div>
+      <div class="k caps"><span lang="es">movilidad · ciclo de vida</span><span lang="en">mobility · lifecycle</span></div>
       <h3><span lang="es">Comunicaciones que se miden contra un control</span><span lang="en">Messaging measured against a control</span></h3>
       <p><span lang="es">Flujos multicanal para pasajeros y conductores, con segmentos, momentos de envío y grupo de control para leer el efecto real.</span><span lang="en">Multichannel flows for riders and drivers, with segments, send moments and a control group to read the true lift.</span></p>
       <div class="chips"><span>Braze</span><span>push</span><span>in-app</span><span>email</span><span>A/B</span></div>
     </div>
     <div class="case">
-      <div class="k"><span lang="es">agencia · multimarca</span><span lang="en">agency · multi-brand</span></div>
+      <div class="k caps"><span lang="es">agencia · multimarca</span><span lang="en">agency · multi-brand</span></div>
       <h3><span lang="es">Visibilidad de pipeline donde no existía</span><span lang="en">Pipeline visibility where there was none</span></h3>
       <p><span lang="es">Customer journey por cuenta, criterios MQL/SQL, lead scoring y dashboards por marca para anticipar cuellos de botella.</span><span lang="en">Per-account customer journey, MQL/SQL criteria, lead scoring and per-brand dashboards to spot bottlenecks early.</span></p>
       <div class="chips"><span>HubSpot</span><span>Clientify</span><span>Power BI</span><span>Make</span></div>
     </div>
     <div class="case">
-      <div class="k"><span lang="es">sector público</span><span lang="en">public sector</span></div>
+      <div class="k caps"><span lang="es">sector público</span><span lang="en">public sector</span></div>
       <h3><span lang="es">De reportes manuales a monitoreo continuo</span><span lang="en">From manual reports to continuous monitoring</span></h3>
       <p><span lang="es">Reportes recurrentes automatizados con SQL y VBA, y seguimiento en Power BI.</span><span lang="en">Recurring reports automated with SQL and VBA, tracked in Power BI.</span></p>
       <div class="chips"><span>SQL</span><span>Excel VBA</span><span>Power BI</span></div>
     </div>
     <div class="case">
-      <div class="k"><span lang="es">aerolínea · calidad</span><span lang="en">airline · quality</span></div>
+      <div class="k caps"><span lang="es">aerolínea · calidad</span><span lang="en">airline · quality</span></div>
       <h3><span lang="es">Del comportamiento del usuario a decisiones</span><span lang="en">From user behavior to decisions</span></h3>
       <p><span lang="es">KPIs de atención y tiempos de respuesta convertidos en reportes ejecutivos accionables.</span><span lang="en">Service KPIs and response times turned into actionable executive reports.</span></p>
       <div class="chips"><span>Excel</span><span>Power BI</span><span>KPIs</span></div>
@@ -198,25 +209,25 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
   <!-- proyectos -->
   <section data-panel="proyectos" hidden>
     <div class="case">
-      <div class="k"><span lang="es">sistema propio</span><span lang="en">own system</span></div>
+      <div class="k caps"><span lang="es">sistema propio</span><span lang="en">own system</span></div>
       <h3><span lang="es">Un equipo de agentes de IA para el trabajo diario</span><span lang="en">An AI agent team for everyday work</span></h3>
       <p><span lang="es">Agentes especializados que arman, revisan y vigilan campañas, con memoria compartida y revisión humana antes de cada envío.</span><span lang="en">Specialized agents that build, review and monitor campaigns, with shared memory and human review before anything ships.</span></p>
       <div class="chips"><span>Claude</span><span>MCP</span><span>agents</span></div>
     </div>
     <div class="case">
-      <div class="k"><span lang="es">investigación</span><span lang="en">research</span></div>
+      <div class="k caps"><span lang="es">investigación</span><span lang="en">research</span></div>
       <h3><a href="https://github.com/Maskai-ia/maskai">maskai</a> · <span lang="es">reportes de IA aplicada</span><span lang="en">applied AI reports</span></h3>
       <p><span lang="es">MCP (Model Context Protocol), tutores socráticos con IA y otros temas explicados para no técnicos.</span><span lang="en">MCP, Socratic AI tutors and more, explained for non-technical readers.</span></p>
     </div>
     <div class="case">
-      <div class="k"><span lang="es">contenido</span><span lang="en">content</span></div>
+      <div class="k caps"><span lang="es">contenido</span><span lang="en">content</span></div>
       <h3><span lang="es">Carruseles de IA en LinkedIn</span><span lang="en">AI carousels on LinkedIn</span></h3>
       <p><span lang="es">Piezas cortas que traducen herramientas nuevas a casos de uso reales.</span><span lang="en">Short pieces translating new tools into real use cases.</span></p>
     </div>
   </section>
 
-  <footer>
-    <span class="live" id="clock">lima</span>
+  <footer class="caps">
+    <span class="live" id="clock">Lima</span>
     <span>NK · <span lang="es">haz clic en el agua</span><span lang="en">click the water</span></span>
   </footer>
 </main>
@@ -242,11 +253,6 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
   function setLang(l){root.dataset.lang=l;root.lang=l;langBtn.textContent=l==='es'?'EN':'ES';store.set('lang',l);}
   setLang(store.get('lang')||'es');
   langBtn.onclick=()=>setLang(root.dataset.lang==='es'?'en':'es');
-  const t=store.get('theme'); if(t) root.dataset.theme=t;
-  document.getElementById('theme').onclick=()=>{
-    const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark?'light':'dark'; store.set('theme',root.dataset.theme); palette();
-  };
 
   /* ---------- email protegido ---------- */
   const m=document.getElementById('mail');
@@ -254,13 +260,13 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
 
   /* ---------- reloj de Lima ---------- */
   const clk=document.getElementById('clock');
-  const tick=()=>clk.textContent='lima · '+new Date().toLocaleTimeString('es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit'});
+  const tick=()=>clk.textContent='Lima · '+new Date().toLocaleTimeString(root.lang==='en'?'en-US':'es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit',hour12:false});
   tick(); setInterval(tick,20000);
 
   /* ---------- estanque koi 2.5D: nadan, huyen del cursor y comen ---------- */
   const cv=document.querySelector('canvas.pond'), ctx=cv.getContext('2d');
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isDark=()=>root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark=()=>false;
   const hasFilter='filter' in ctx;
   const N=14, TAU=Math.PI*2;
   let W,H,DPR,fish=[],food=[],ripples=[];
@@ -268,18 +274,18 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
 
   // variedades reales de koi en colores de marca (sin naranja)
   const SKINS=[
-    {name:'kohaku', base:'#FFFFFF', shade:'#DCCFC8', fin:'rgba(214,196,188,.42)', p:[['#B81C2A',[[2.4,0,.95],[5.8,.25,.85],[9.2,-.15,.6]]]]},
-    {name:'sanke',  base:'#FFFFFF', shade:'#DCCFC8', fin:'rgba(214,196,188,.42)', p:[['#B81C2A',[[3,-.15,.8],[7.6,.2,.7]]],['#161212',[[5.2,.55,.32],[9.8,-.45,.28],[3.6,.6,.2]]]]},
-    {name:'utsuri', base:'#2A2323', shade:'#0E0B0B', fin:'rgba(30,24,24,.62)', p:[['#FAF6F3',[[3.8,.35,.55],[7.8,-.3,.5],[1.2,-.2,.35]]]]},
-    {name:'tancho', base:'#FFFFFF', shade:'#DCCFC8', fin:'rgba(214,196,188,.42)', p:[['#B81C2A',[[1.1,0,.62]]]]},
+    {name:'kohaku', base:'#FFFFFF', shade:'#E4DFE0', fin:'rgba(205,200,202,.42)', p:[['#B81C2A',[[2.4,0,.95],[5.8,.25,.85],[9.2,-.15,.6]]]]},
+    {name:'sanke',  base:'#FFFFFF', shade:'#E4DFE0', fin:'rgba(205,200,202,.42)', p:[['#B81C2A',[[3,-.15,.8],[7.6,.2,.7]]],['#161212',[[5.2,.55,.32],[9.8,-.45,.28],[3.6,.6,.2]]]]},
+    {name:'utsuri', base:'#1E1E20', shade:'#0B0B0B', fin:'rgba(20,20,22,.6)', p:[['#FFFFFF',[[3.8,.35,.55],[7.8,-.3,.5],[1.2,-.2,.35]]]]},
+    {name:'tancho', base:'#FFFFFF', shade:'#E4DFE0', fin:'rgba(205,200,202,.42)', p:[['#B81C2A',[[1.1,0,.62]]]]},
   ];
   const prof=t=>t<.22 ? .62+1.73*t : Math.max(.05,Math.pow(1-(t-.22)/.78,.9));
   const angDiff=(a,b)=>((a-b+Math.PI*3)%TAU)-Math.PI;
 
   function pickTarget(){
-    const col=Math.min(700,W*.55), left=(W-col)/2;
-    const side=W>900 && Math.random()<.72;      // en desktop prefieren los costados del texto
-    const x=side ? (Math.random()<.5 ? Math.random()*left : W-left+Math.random()*left) : 40+Math.random()*(W-80);
+    const col=Math.min(856,W*.7), left=(W-col)/2;
+    const side=W>900 && Math.random()<.9;      // en desktop prefieren los costados del texto
+    const x=side ? (Math.random()<.5 ? Math.random()*Math.max(40,left-80) : W-left+80+Math.random()*Math.max(40,left-80)) : 40+Math.random()*(W-80);
     return {x, y:50+Math.random()*(H-100)};
   }
   function makeFish(i){
@@ -367,7 +373,7 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
     return path;
   }
   function fins(f,fr){
-    const s=f.skin; ctx.fillStyle=s.fin; ctx.strokeStyle='rgba(120,90,80,.18)'; ctx.lineWidth=.7;
+    const s=f.skin; ctx.fillStyle=s.fin; ctx.strokeStyle='rgba(40,40,44,.14)'; ctx.lineWidth=.7;
     // aletas pectorales que remen
     const k=2, p=f.pts[k], a=fr.A[k], w=f.w*prof(k/(N-1)), flap=Math.sin(f.phase*.9)*.3;
     for(const sg of [1,-1]){
@@ -388,7 +394,7 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
     // sombra en el fondo del estanque (da la profundidad)
     ctx.save();
     if(hasFilter) ctx.filter='blur(6px)';
-    ctx.fillStyle=dark?'rgba(0,0,0,.55)':'rgba(60,30,30,.13)';
+    ctx.fillStyle=dark?'rgba(0,0,0,.55)':'rgba(20,20,24,.12)';
     ctx.fill(bodyPath(f,fr,14,18));
     ctx.restore();
     fins(f,fr);
@@ -411,7 +417,7 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
     ctx.strokeStyle='rgba(255,255,255,.32)'; ctx.lineWidth=f.w*.28; ctx.lineCap='round';
     ctx.beginPath(); ctx.moveTo(f.pts[1].x,f.pts[1].y); for(let k=2;k<N-4;k++) ctx.lineTo(f.pts[k].x,f.pts[k].y); ctx.stroke();
     // sombra en los bordes para redondear
-    ctx.strokeStyle=dark?'rgba(0,0,0,.35)':'rgba(70,40,40,.10)'; ctx.lineWidth=f.w*.35; ctx.stroke(path);
+    ctx.strokeStyle=dark?'rgba(0,0,0,.35)':'rgba(30,30,34,.10)'; ctx.lineWidth=f.w*.35; ctx.stroke(path);
     ctx.restore();
     // ojos
     const h=f.pts[0], ha=fr.A[0];
@@ -422,11 +428,11 @@ footer .live::before{content:"";display:inline-block;width:6px;height:6px;border
     ctx.clearRect(0,0,W,H);
     const dark=isDark();
     for(const r of ripples){
-      ctx.strokeStyle=dark?`rgba(244,239,236,${.22*r.life})`:`rgba(110,80,70,${.2*r.life})`; ctx.lineWidth=1.1;
+      ctx.strokeStyle=dark?`rgba(244,239,236,${.22*r.life})`:`rgba(184,28,42,${.22*r.life})`; ctx.lineWidth=1.1;
       ctx.beginPath(); ctx.ellipse(r.x,r.y,r.r,r.r*.82,0,0,TAU); ctx.stroke();
       if(r.r>14){ctx.beginPath(); ctx.ellipse(r.x,r.y,r.r*.6,r.r*.5,0,0,TAU); ctx.stroke();}
     }
-    for(const p of food){ctx.fillStyle=`rgba(168,144,128,${Math.min(1,p.life*2)})`;ctx.beginPath();ctx.arc(p.x,p.y,2.6,0,TAU);ctx.fill();}
+    for(const p of food){ctx.fillStyle=`rgba(184,28,42,${Math.min(1,p.life*2)*.85})`;ctx.beginPath();ctx.arc(p.x,p.y,2.6,0,TAU);ctx.fill();}
     for(const f of fish) drawFish(f);
   }
   let last=performance.now();
